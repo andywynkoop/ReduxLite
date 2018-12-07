@@ -1,0 +1,22 @@
+{
+  "name": "redux-lite",
+  "version": "1.0.0",
+  "description": "A simplified version of the popular Redux library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andywynkoop/redux-lite.git"
+  },
+  "keywords": [
+    "Redux"
+  ],
+  "author": "Andy Wynkoop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andywynkoop/redux-lite/issues"
+  },
+  "homepage": "https://github.com/andywynkoop/redux-lite#readme"
+}
