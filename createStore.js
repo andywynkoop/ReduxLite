@@ -1,7 +1,7 @@
 class Store {
-  constructor(rootReducer, preloadedState = {}, middlewares = []) {
+  constructor(rootReducer, preloadedState = {}, appliedMiddlewares) {
     this.rootReducer = rootReducer;
-    this.middlewares = middlewares;
+    this.middleware = appliedMiddlewares;
     this.subscriptions = {};
     this.state = rootReducer(preloadedState, {type: "__initializeStore"}, this.subscriptions);
   }
@@ -11,8 +11,10 @@ class Store {
   }
 
   dispatch(action) {
-    const nextState = this.rootReducer(this.state, action, this.subscriptions);
-    this.state = nextState;
+    this.middleware(this, action => {
+      const nextState = this.rootReducer(this.state, action, this.subscriptions);
+      this.state = nextState;
+    })(action);
   }
 
   subscribe(key, cb) {
