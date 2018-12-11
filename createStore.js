@@ -2,7 +2,7 @@ class Store {
   constructor(rootReducer, preloadedState = {}, appliedMiddlewares) {
     this.rootReducer = rootReducer;
     this.middleware = appliedMiddlewares;
-    this.subscriptions = {};
+    this.subscriptions = [];
     this.state = rootReducer(preloadedState, {type: "__initializeStore"}, this.subscriptions);
   }
 
@@ -17,10 +17,8 @@ class Store {
     })(action);
   }
 
-  subscribe(key, cb) {
-    const keySubscriptions = this.subscriptions[key] || [];
-    keySubscriptions.push(cb);
-    this.subscriptions[key] = keySubscriptions;
+  subscribe(cb) {
+    this.subscriptions.push(cb);
   }
 } 
 
