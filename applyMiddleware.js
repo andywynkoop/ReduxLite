@@ -1,6 +1,7 @@
 export default (...middlewares) => (store, cb) => action => {
+  const middlewaresCopy = [...middlewares];
   const invokeNextMiddleware = (action) => {
-    let nextMiddleware = middlewares.shift();
+    let nextMiddleware = middlewaresCopy.shift();
     if (!nextMiddleware) {
       return cb(action);
     }

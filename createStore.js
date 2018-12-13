@@ -4,10 +4,13 @@ class Store {
     this.middleware = appliedMiddlewares;
     this.subscriptions = [];
     this.state = rootReducer(preloadedState, {type: "__initializeStore"}, this.subscriptions);
+    this.getState = this.getState.bind(this);
+    this.dispatch = this.dispatch.bind(this);
+    this.subscribe = this.subscribe.bind(this);
   }
 
   getState() {
-    return this.state;
+    return Object.assign({}, this.state);
   }
 
   dispatch(action) {

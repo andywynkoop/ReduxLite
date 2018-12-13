@@ -3,7 +3,7 @@ export default config => (oldState, action, subscriptions) => {
   let stateChanged = false;
   Object.keys(config).forEach(key => {
     const reducer = config[key];
-    const oldSlice = oldState[key];
+    let oldSlice = oldState[key];
     const newSlice = reducer(oldSlice, action, subscriptions);
     if (!Object.is(oldSlice, newSlice)) {
       stateChanged = true;
